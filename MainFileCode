@@ -1,0 +1,56 @@
+import re
+import tkinter as tk
+
+def check_password():
+    password = entry.get()
+    if len(password) < 8:
+        result_label.config(text="Короткий пароль.")
+        result_label.configure(fg="yellow", font=("Impact", 14,))
+        result_label.configure(bg="black")
+    elif not re.search("[a-z]", password):
+        result_label.config(text="Пароль должен содержать хотя бы одну маленькую букву.")
+        result_label.configure(fg="yellow", font=("Impact", 14,))
+        result_label.configure(bg="black")
+    elif not re.search("[A-Z]", password):
+        result_label.config(text="Пароль должен содержать хотя бы одну большую букву.")
+        result_label.configure(fg="yellow", font=("Impact", 14,))
+        result_label.configure(bg="black")
+    elif not re.search("[0-9]", password):
+        result_label.config(text="Пароль должен содержать хотя бы одну цифру.")
+        result_label.configure(fg="yellow", font=("Impact", 14,))
+        result_label.configure(bg="black")
+    else:
+        result_label.config(text="Пароль сильный! Вы в безопасности!")
+        result_label.configure(fg="yellow", font=("Impact", 14,))
+        result_label.configure(bg="black")
+
+root = tk.Tk()
+root.title("Проверка СИЛЫ пароля (only English)")
+root.configure(bg="black")
+root.geometry("500x200")
+
+label = tk.Label(root, text="Введите пароль:")
+label.configure(fg="yellow", font=("Impact", 22, "bold"))
+label.configure(bg="black")
+label.pack()
+
+label = tk.Label(root, text="Только на англиской раскладке ;(")
+label.configure(fg="yellow", font=("Impact", 14,))
+label.configure(bg="black")
+label.pack()
+
+entry = tk.Entry(root)
+entry.pack()
+
+check_button = tk.Button(root, text="Проверить пароль!", command=check_password, bg="grey", fg="yellow")
+check_button.pack()
+
+
+result_label = tk.Label(root, text="")
+result_label.configure(fg="yellow", font=("Impact", 14,))
+result_label.configure(bg="black")
+result_label.pack()
+
+
+
+root.mainloop()
